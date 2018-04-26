@@ -3,6 +3,9 @@ package com.cs192a.manojkumar.hw1_tipcalculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -12,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar seekBar;
     private TextView seekBarValue, tipValue, totalAmount;
     private EditText inputTotal;
-
+    float progressValue;
     private static String TAG = "LOG_VALUE_IS";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                // Update the seekbar progress  on screen
                 seekBarValue.setText("("+String.valueOf(progress)+")%");
-
+                progressValue = progress;
                 // calculate tip only if the total is entered
                 if(!inputTotal.getText().toString().matches("")) {
                     float price = Float.parseFloat(inputTotal.getText().toString());
@@ -45,6 +48,33 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+        // Update tip and total dynamically as the total is entered
+        inputTotal.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Update only when there is a value in the total
+                if(!s.toString().isEmpty()) {
+                    tipCalculator(Float.parseFloat(inputTotal.getText().toString()), progressValue);
+                }
+                // Whent the values are removed, set the top and total to 0
+                else{
+                    tipValue.setText("$0.00");
+                    totalAmount.setText("$0.00");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
