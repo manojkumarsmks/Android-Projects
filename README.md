@@ -22,6 +22,13 @@ Display current time and date.
 
 <img src= "https://github.com/manojkumarsmks/Android-Projects/blob/master/CurrentTimeAndDate/Screeshot/Screenshot.gif" style="width:200px;height:250px;"/>
 
+
+#### PassingDataToAnotherActivity
+Data tansfer from one activity to another.
+
+<img src="https://github.com/manojkumarsmks/Android-Projects/blob/master/PassingDateToAnotherAcitivty/screenshot/screenshot.gif"
+style="width:200px;height:250px"/>
+
 UI from - http://samvlu.com/
 
 
