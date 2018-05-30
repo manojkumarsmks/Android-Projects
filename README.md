@@ -29,6 +29,13 @@ Data tansfer from one activity to another.
 <img src="https://github.com/manojkumarsmks/Android-Projects/blob/master/PassingDateToAnotherAcitivty/screenshot/screenshot.gif"
 style="width:200px;height:250px"/>
 
+#### PullToRefresh
+Pull to refresh the data in List/Recycleview
+
+<img src="https://github.com/manojkumarsmks/Android-Projects/blob/master/PullToRefresh/screenshot/screenshot.gif"
+style="width:200px;height:250px"/>
+
+
 UI from - http://samvlu.com/
 
 
