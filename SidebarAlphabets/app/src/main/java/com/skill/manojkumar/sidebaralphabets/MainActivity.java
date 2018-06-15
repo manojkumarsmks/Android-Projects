@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> countryList = new ArrayList<>();
-        recyclerView = (RecyclerView)findViewById(R.id.country_id);
+        char[] alphabet = "ABCEDFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
+        ArrayList<String> countryList = new ArrayList<>();
+
+        recyclerView = (RecyclerView)findViewById(R.id.country_id);
+        addSideBar(alphabet);
         //Preparing the data
         countryList.add("Afghanistan");
         countryList.add("Albania");
@@ -84,5 +89,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(countryAdapter);
 
 
+    }
+
+    public void addSideBar(char[] array) {
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.alphabets);
+
+        for (int i=0; i<array.length; i++ ) {
+            TextView textView = new TextView(this);
+            textView.setText(String.valueOf(array[i]));
+            linearLayout.addView(textView);
+        }
     }
 }

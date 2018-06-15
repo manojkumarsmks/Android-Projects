@@ -37,8 +37,6 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        if(position == 0)
-
         holder.country.setText(countryList.get(position));
     }
 
