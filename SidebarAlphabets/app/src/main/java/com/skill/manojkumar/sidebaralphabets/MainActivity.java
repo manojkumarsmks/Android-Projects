@@ -1,5 +1,7 @@
 package com.skill.manojkumar.sidebaralphabets;
 
+import android.graphics.Typeface;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i=0; i<array.length; i++ ) {
             final TextView textView = new TextView(this);
             textView.setText(String.valueOf(array[i]));
+            textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
             textView.setBackgroundResource(outValue.resourceId);
             textView.setTextColor(getResources().getColor(R.color.sideBarColor));
 
