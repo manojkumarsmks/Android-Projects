@@ -35,7 +35,14 @@ Pull to refresh the data in List/Recycleview
 <img src="https://github.com/manojkumarsmks/Android-Projects/blob/master/PullToRefresh/screenshot/screenshot.gif"
 style="width:200px;height:250px"/>
 
+#### SidebarAlphabet
+Side bar with alphabets to sort the recyclerview like contacts
 
-UI from - http://samvlu.com/
+<img src="https://github.com/manojkumarsmks/Android-Projects/blob/master/SidebarAlphabets/screenshot/sidebar.gif"
+style="width:200px;height:250px"/>
+
+
+
+Inspriration: http://samvlu.com/
 
 
