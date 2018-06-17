@@ -3,7 +3,11 @@ package com.skill.manojkumar.sidebaralphabets;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,18 +17,18 @@ import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String LOG_STATEMENT = "Lod_Debug";
+    public static final String TAG= "Log_Statement";
     RecyclerView recyclerView;
     CountryAdapter countryAdapter;
     RecyclerView.LayoutManager mLayoutManager;
+    ArrayList<String> countryList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         char[] alphabet = "ABCEDFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-
-        ArrayList<String> countryList = new ArrayList<>();
 
         recyclerView = (RecyclerView)findViewById(R.id.country_id);
         addSideBar(alphabet);
@@ -71,6 +75,23 @@ public class MainActivity extends AppCompatActivity {
         countryList.add("Lebanon");
         countryList.add("Liberia");
         countryList.add("Libya");
+        countryList.add("Madagascar");
+        countryList.add("Malawi");
+        countryList.add("Malaysia");
+        countryList.add("Mali");
+        countryList.add("Malt");
+        countryList.add("Mexico");
+        countryList.add("Namibia");
+        countryList.add("Nepal");
+        countryList.add("New Zealand");
+        countryList.add("Nigeria");
+        countryList.add("Pakistan");
+        countryList.add("Panama");
+        countryList.add("Paraguay");
+        countryList.add("Peru");
+        countryList.add("Serbia");
+        countryList.add("South America");
+        countryList.add("Srilanka");
 
         Collections.sort(countryList, new Comparator<String>() {
             @Override
@@ -88,16 +109,61 @@ public class MainActivity extends AppCompatActivity {
         countryAdapter = new CountryAdapter(countryList);
         recyclerView.setAdapter(countryAdapter);
 
-
     }
 
     public void addSideBar(char[] array) {
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.alphabets);
+        TypedValue outValue = new TypedValue();
+        getApplication().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
 
         for (int i=0; i<array.length; i++ ) {
-            TextView textView = new TextView(this);
+            final TextView textView = new TextView(this);
             textView.setText(String.valueOf(array[i]));
+            textView.setBackgroundResource(outValue.resourceId);
+            textView.setTextColor(getResources().getColor(R.color.sideBarColor));
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    scrollToThePoint(textView.getText().toString());
+                }
+            });
             linearLayout.addView(textView);
         }
     }
+
+    private void scrollToThePoint(String s) {
+
+        Log.d(TAG, "Selected String is "+s);
+        String currentTopElement = countryList.get(((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition());
+        int position = 0;
+        if(s.charAt(0) < currentTopElement.charAt(0)) {
+            for(int i=0; i < countryList.indexOf(currentTopElement); i++) {
+                if(countryList.get(i).charAt(0) == s.charAt(0)) {
+                    position = i;
+                    break;
+                }
+            }
+        }
+        else {
+            for(int i=countryList.indexOf(currentTopElement); i < countryList.size()-1; i++) {
+                if(countryList.get(i).charAt(0) == s.charAt(0)) {
+                    position = i;
+                    break;
+                }
+            }
+        }
+
+        RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(this) {
+            @Override
+            protected int getVerticalSnapPreference() {
+                return LinearSmoothScroller.SNAP_TO_START;
+            }
+        };
+
+        smoothScroller.setTargetPosition(position);
+
+        mLayoutManager.startSmoothScroll(smoothScroller);
+    }
+
 }
