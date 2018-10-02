@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Rainbow</string>
+
+    <string name="red_color">#FF0000</string>
+    <string name="orange_color">#FF7F00</string>
+    <string name="yellow_color">#FFFF00</string>
+    <string name="green_color">#00FF00</string>
+    <string name="blue_color">#0000FF</string>
+    <string name="indigo_color">#4B0082</string>
+    <string name="violet_color">#9400D3</string>
+</resources>
